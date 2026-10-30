@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks </title>
+</head>
+
+<body>
+
+    <h2>Student Marks Analyzer</h2>
+
+    <p>Enter student details </p>
+
+    <script>
+
+        let fullName = prompt("Enter student name:");
+
+        let registrationNo = Number(prompt("Enter roll number:"));
+
+        let branchName = prompt("Enter department:");
+
+        console.log("Student Name:", fullName.toUpperCase());
+
+        console.log("Roll Number:", registrationNo);
+
+        console.log("Department:", branchName);
+
+        console.log("Name Length:", fullName.length);
+
+
+        let marksList = [];
+
+        for (let subject = 1; subject <= 5; subject++) {
+
+            let obtainedMarks;
+
+            do {
+
+                obtainedMarks = Number(
+                    prompt("Enter marks for subject " + subject + " (0-100):")
+                );
+
+                if (obtainedMarks < 0 || obtainedMarks > 100) {
+
+                    alert("Please enter marks between 0 and 100.");
+
+                }
+
+            } while (obtainedMarks < 0 || obtainedMarks > 100);
+
+            marksList.push(obtainedMarks);
+
+        }
+
+        console.log("Student Marks:", marksList);
+
+
+        // Function to calculate total score
+
+        function calculateScore(marksList) {
+
+            let finalTotal = 0;
+
+            for (let index = 0; index < marksList.length; index++) {
+
+                finalTotal = finalTotal + marksList[index];
+
+            }
+
+            return finalTotal;
+        }
+
+        console.log("Total Marks:", calculateScore(marksList));
+
+
+        // Function to calculate percentage
+
+        function calculateResultPercentage(marksList) {
+
+            let obtainedTotal = calculateScore(marksList);
+
+            let resultPercentage = obtainedTotal / marksList.length;
+
+            return resultPercentage;
+        }
+
+        console.log("Percentage:", calculateResultPercentage(marksList) + "%");
+
+
+        // Function to get highest marks
+
+        function getTopScore(marksList) {
+
+            let topScore = marksList[0];
+
+            for (let index = 1; index < marksList.length; index++) {
+
+                if (marksList[index] > topScore) {
+
+                    topScore = marksList[index];
+
+                }
+
+            }
+
+            return topScore;
+        }
+
+        console.log("Highest Marks:", getTopScore(marksList));
+
+
+        // Function to get lowest marks
+
+        function getLowestScore(marksList) {
+
+            let lowScore = marksList[0];
+
+            for (let index = 1; index < marksList.length; index++) {
+
+                if (marksList[index] < lowScore) {
+
+                    lowScore = marksList[index];
+
+                }
+
+            }
+
+            return lowScore;
+        }
+
+        console.log("Lowest Marks:", getLowestScore(marksList));
+
+
+        // Function to calculate passed subjects
+
+        function totalPassed(marksList) {
+
+            let passSubjects = 0;
+
+            for (let index = 0; index < marksList.length; index++) {
+
+                if (marksList[index] >= 40) {
+
+                    passSubjects++;
+
+                }
+
+            }
+
+            return passSubjects;
+        }
+
+        console.log("Subjects Passed:", totalPassed(marksList));
+
+
+        // Function to display performance
+
+        function displayPerformance(marksList) {
+
+            let percentage = calculateResultPercentage(marksList);
+
+            if (percentage >= 80) {
+
+                return "Excellent";
+
+            }
+
+            else if (percentage >= 60) {
+
+                return "Good";
+
+            }
+
+            else if (percentage >= 40) {
+
+                return "Average";
+
+            }
+
+            else {
+
+                return "Needs Improvement";
+
+            }
+
+        }
+
+        console.log("Performance:", displayPerformance(marksList));
+
+
+    </script>
+
+</body>
+
+</html>
